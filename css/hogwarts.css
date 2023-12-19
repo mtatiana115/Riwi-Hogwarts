@@ -1,0 +1,78 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: url("https://images4.alphacoders.com/130/1308100.jpeg")
+    center/cover no-repeat fixed;
+  height: 100vh;
+  font-family: cursive;
+  font-size: 1.6rem;
+}
+
+.titulo {
+  margin-top: 8%;
+  text-align: center;
+  font-size: 30px;
+  color: rgb(219, 198, 60);
+}
+
+form {
+  margin: 0 auto;
+  background-color: rgba(0, 0, 0, 0.619);
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 2rem;
+  color: white;
+  margin-top: 5%;
+  border-radius: 8px;
+  padding-bottom: 40px;
+}
+
+.avatar {
+  display: flex;
+  position: relative;
+  left: 320px;
+  top: 100px;
+}
+
+.preguntas label:nth-child(1) {
+  margin-right: 15px;
+}
+
+.preguntas label:nth-child(5) {
+  margin-right: 45px;
+}
+
+.preguntas label:nth-child(9) {
+  margin-right: 20px;
+}
+
+.preguntas label:nth-child(13) {
+  margin-right: 30px;
+}
+
+#casa {
+  margin-left: 10%;
+  font-weight: bold;
+  height: 30px;
+  width: 70%;
+  background-color: rgb(219, 198, 60);
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+#casa:hover {
+  background-color: rgb(111, 100, 28);
+  border: 2px solid white;
+  color: white;
+}
+
+.registro {
+  height: 30px;
+  margin-top: 1em;
+}
