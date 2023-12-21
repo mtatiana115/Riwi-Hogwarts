@@ -1,3 +1,6 @@
+const prueba = document.getElementById("prueba");
+console.log("🚀  prueba=>", prueba);
+
 let estudianteHogwarts = {
   nombre: "",
   edad: "",
