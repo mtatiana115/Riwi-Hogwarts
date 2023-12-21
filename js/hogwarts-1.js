@@ -1,20 +1,15 @@
-const prueba = document.getElementById("prueba");
-console.log("🚀  prueba=>", prueba);
+// const prueba = document.getElementById("prueba");
+// console.log("🚀  prueba=>", prueba);
 
-let estudianteHogwarts = {
-  nombre: "",
-  edad: "",
-  familia: {
-    padre: "Harry Potter",
-    madre: "pepita perez",
-  },
-  linaje: "Sangre Pura",
-  casa: "",
-  animalPatronus: "",
-  cualidades: ["Ambicion, Determinacion, Astucia"],
-};
+const hogwartsInitialFormData = {};
 
-console.log(estudianteHogwarts.nombre);
+document.querySelector("#hogwartsForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const data = Object.fromEntries(new FormData(e.target));
+  hogwartsInitialFormData = data;
+  asignarCasa(hogwartsInitialFormData);
+});
+
 let clases = {
   transformaciones: "Profesor Kevin Slughorn",
   herbologia: "Profesor Maria Umbridge",
@@ -25,41 +20,29 @@ let clases = {
   historiaDeMagia: "Profesor Ronald Sprout",
 };
 
+function asignarCasa(estudiante) {
+  const cualidadesGryffindor = ["Valor", "Fuerza", "Audacia"];
+  const cualidadesHufflepuff = ["Justicia", "Lealtad", "Paciencia"];
+  const cualidadesRavenclaw = ["Creatividad", "Erudiccion", "Inteligencia"];
+  const cualidadesSlytherin = ["Ambicion", "Determinacion", "Astucia"];
+
+  // Determinar la casa según las cualidades y el linaje
+  if (estudiante.cualidades.includes(cualidadesGryffindor)) {
+    estudiante.casa = "Gryffindor";
+  } else if (estudiante.cualidades.includes(cualidadesHufflepuff)) {
+    estudiante.casa = "Hufflepuff";
+  } else if (estudiante.cualidades.includes(cualidadesRavenclaw)) {
+    estudiante.casa = "Ravenclaw";
+  } else if (estudiante.cualidades.includes(cualidadesSlytherin)) {
+    estudiante.casa = "Slytherin";
+  } else {
+    console.log(
+      "No se puede determinar la casa. ¡El Sombrero Seleccionador está confundido!"
+    );
+  }
+}
+
 let cena = {
-  asignarCasa: function (estudiante) {
-    // Determinar la casa según las cualidades y el linaje
-    if (estudiante.cualidades.includes("Valor, fuerza, audacia")) {
-      estudiante.casa = "Gryffindor";
-    } else if (
-      estudiante.cualidades.includes("Justicia, Lealtad, Paciencia") ||
-      estudiante.cualidades.includes("Lealtad") ||
-      estudiante.cualidades.includes("Paciencia") ||
-      estudiante.linaje === "muggle" ||
-      estudiante.linaje === "mestizo"
-    ) {
-      estudiante.casa = "Hufflepuff";
-    } else if (
-      estudiante.cualidades.includes("Creatividad, Erudiccion, Inteligencia") ||
-      estudiante.cualidades.includes("Erudiccion") ||
-      estudiante.cualidades.includes("Inteligencia") ||
-      estudiante.linaje === "muggle" ||
-      estudiante.linaje === "mestizo"
-    ) {
-      estudiante.casa = "Ravenclaw";
-    } else if (
-      estudiante.cualidades.includes("Ambicion, Determinacion, Astucia") ||
-      estudiante.cualidades.includes("Determinacion") ||
-      estudiante.cualidades.includes("Astucia") ||
-      estudiante.linaje === "sangre pura"
-    ) {
-      estudiante.casa = "Slytherin";
-      this.cenaS;
-    } else {
-      console.log(
-        "No se puede determinar la casa. ¡El Sombrero Seleccionador está confundido!"
-      );
-    }
-  },
   cenaS: function () {
     estudianteHogwarts.casa = this.asignarCasa();
   },
