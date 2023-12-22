@@ -2,13 +2,15 @@
 // console.log("🚀  prueba=>", prueba);
 
 let hogwartsInitialFormData = {};
+let formResponse = document.querySelector("#formResponse");
 
 document.querySelector("#hogwartsForm").addEventListener("submit", (e) => {
 	e.preventDefault();
 	const data = Object.fromEntries(new FormData(e.target));
 	hogwartsInitialFormData = data;
 	asignarCasa(hogwartsInitialFormData);
-	console.log(hogwartsInitialFormData);
+
+	showMessage(hogwartsInitialFormData);
 });
 
 let clases = {
@@ -36,6 +38,23 @@ function asignarCasa(student) {
 			"No se puede determinar la casa. ¡El Sombrero Seleccionador está confundido!"
 		);
 	}
+}
+
+function showMessage(studentForm) {
+	formResponse.classList.add("--visible");
+	formResponse.innerHTML = `
+	<div>
+		<p class="text-body--1">Avatar: ${studentForm.avatar}</p>
+		<p class="text-body--1">Name: ${studentForm.name}</p>
+		<p class="text-body--1">Age: ${studentForm.age}</p>
+		<p class="text-body--1">Family: ${studentForm.family}</p>
+		<p class="text-body--1">Lineage: ${studentForm.lineage}</p>
+		<p class="text-body--1">Qualities: ${studentForm.qualities}</p>
+		<p class="text-body--1">House: ${studentForm.house}</p>
+	</div>`;
+	setTimeout(() => {
+		formResponse.classList.remove("--visible");
+	}, 3000);
 }
 
 let cena = {
