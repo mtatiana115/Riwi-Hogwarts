@@ -1,0 +1,33 @@
+.main {
+	.__form {
+		padding: 20px;
+
+		.__field {
+			display: flex;
+			flex-direction: column;
+			gap: 8px;
+			margin-bottom: 16px;
+
+			.__input {
+				height: 40px;
+				padding-left: 8px;
+				border: 1px solid white;
+				border-radius: 5px;
+				background-color: transparent;
+
+				&.--select {
+					cursor: pointer;
+
+					.__option {
+						background-color: black;
+					}
+				}
+			}
+
+			.__input:focus {
+				border: none;
+				outline: 1px solid rgb(219, 198, 60);
+			}
+		}
+	}
+}

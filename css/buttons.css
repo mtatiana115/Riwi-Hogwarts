@@ -1,0 +1,15 @@
+.main {
+	.__button {
+		display: block;
+		height: 50px;
+		padding: 12px;
+		margin-inline: auto;
+		border-radius: 10px;
+		background-color: rgb(111, 100, 28);
+		cursor: pointer;
+	}
+
+	.__button:hover {
+		transform: scale(1.1);
+	}
+}

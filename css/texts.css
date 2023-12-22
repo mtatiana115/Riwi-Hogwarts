@@ -1,0 +1,26 @@
+/* Texts styles */
+.text-heading--1 {
+	font-size: 4.8rem;
+	color: rgb(219, 198, 60);
+}
+
+.text-heading--2 {
+	font-size: 3.2rem;
+	color: white;
+}
+
+.text-heading--3 {
+	font-size: 2rem;
+	color: white;
+}
+
+.text-body--1 {
+	font-size: 1.4rem;
+	line-height: 1.4rem;
+	color: white;
+
+	@media (width > 768px) {
+		font-size: 1.6rem;
+		line-height: 2rem;
+	}
+}

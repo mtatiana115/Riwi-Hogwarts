@@ -1,76 +1,119 @@
 <!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/hogwarts.css" />
-    <script src="./js/hogwarts-1.js" defer></script>
-    <title>Document</title>
-  </head>
-  <body>
-    <div class="titulo" id="prueba">
-      <h1>HOGWARTS</h1>
-    </div>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="./css/hogwarts.css" />
+		<link rel="stylesheet" href="./css/forms.css" />
+		<link rel="stylesheet" href="./css/texts.css" />
+		<link rel="stylesheet" href="./css/buttons.css" />
+		<script src="./js/hogwarts-1.js" defer></script>
+		<title>Hogwarts</title>
+	</head>
+	<body>
+		<main class="main">
+			<div class="__heading">
+				<h1 class="text-heading--1">HOGWARTS</h1>
+			</div>
 
-    <form id="hogwartsForm">
-      <div class="avatar">
-        <label for="fotoPerfil">Suba su avatar </label>
-        <input type="file" id="fotoPerfil" name="fotoPerfil" accept="image/*" />
-      </div>
+			<form id="hogwartsForm" class="__form" action="" method="post">
+				<div class="__field --avatar">
+					<label class="__label text-body--1" for="avatar"
+						>Upload an image:</label
+					>
+					<input
+						class="__input text-body--1"
+						type="file"
+						id="avatar"
+						name="avatar"
+						accept="image/*"
+						required
+					/>
+				</div>
+				<div class="__questions">
+					<div class="__field">
+						<label class="__label text-body--1" for="name">Name:</label>
+						<input
+							class="__input text-body--1"
+							type="text"
+							id="name"
+							name="name"
+							required
+						/>
+					</div>
+					<div class="__field">
+						<label class="__label text-body--1" for="age">Age:</label>
+						<input
+							class="__input text-body--1"
+							type="number"
+							id="age"
+							name="age"
+							required
+						/>
+					</div>
+					<div class="__field">
+						<label class="__label text-body--1" for="family">Family:</label>
+						<input
+							class="__input text-body--1"
+							id="family"
+							name="family"
+							type="text"
+							required
+						/>
+					</div>
 
-      <div class="preguntas">
-        <label for="nombre">Nombre: </label>
-        <input
-          class="registro"
-          type="text"
-          id="nombre"
-          name="nombre"
-          required
-        /><br /><br />
+					<div class="__field">
+						<label class="__label text-body--1" for="lineage"> Lineage:</label>
+						<input
+							class="__input text-body--1"
+							id="lineage"
+							name="lineage"
+							type="text"
+							required
+						/>
+					</div>
+					<div class="__field">
+						<label class="__label text-body--1" for="qualities"
+							>Qualities:
+						</label>
+						<select
+							class="__input --select text-body--1"
+							id="qualities"
+							name="qualities"
+							required
+						>
+							<option
+								class="__option text-body--1"
+								value="Courage, Strength, Boldness"
+							>
+								Courage, Strength, Boldness
+							</option>
+							<option
+								class="__option text-body--1"
+								value="Justice, Loyalty, Patience"
+							>
+								Justice, Loyalty, Patience
+							</option>
+							<option
+								class="__option text-body--1"
+								value="Creativity, Erudition, Intelligence"
+							>
+								Creativity, Erudition, Intelligence
+							</option>
+							<option
+								class="__option text-body--1"
+								value="Ambition, Determination, Cunning"
+							>
+								Ambition, Determination, Cunning
+							</option>
+						</select>
+					</div>
+				</div>
 
-        <label for="edad">Edad: </label>
-        <input
-          class="registro"
-          type="number"
-          id="edad"
-          name="edad"
-          required
-        /><br /><br />
-
-        <label for="familia">Familia: </label>
-        <input
-          class="registro"
-          type="text"
-          id="familia"
-          name="familia"
-          required
-        /><br /><br />
-
-        <label for="linaje">Linaje: </label>
-        <input
-          class="registro"
-          type="texto"
-          id="linaje"
-          name="linaje"
-          required
-        /><br /><br />
-
-        <label for="cualidades">Cualidades: </label>
-        <select name="cualidades" id="cualidades" required>
-          <option value="gryffindor">valor, fuerza, audacia</option>
-          <option value="hufflepuff">justicia, lealtad, paciencia</option>
-          <option value="ravenclaw">
-            creatividad, erudición, inteligencia
-          </option>
-          <option value="slytherin">
-            ambición, determinación, astucia
-          </option></select
-        ><br /><br />
-
-        <button type="submit" id="casa">
-          Visitar el sombrero seleccionador
-        </button>
-      </div>
-    </form>
-  </body>
+				<button class="__button">
+					<span class="text-body--1"> Visit to the sorting hat 🧙‍♀️ </span>
+				</button>
+			</form>
+		</main>
+	</body>
 </html>

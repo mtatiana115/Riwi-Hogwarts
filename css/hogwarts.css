@@ -1,66 +1,32 @@
 * {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
 }
 
 html {
-  font-size: 62.5%;
+	font-size: 62.5%;
 }
 
 body {
-  background: url("https://images4.alphacoders.com/130/1308100.jpeg")
-    center/cover no-repeat fixed;
-  height: 100vh;
-  font-family: cursive;
-  font-size: 1.8rem;
+	background: url("https://images4.alphacoders.com/130/1308100.jpeg") fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	font-family: cursive;
+}
+button {
+	border: none;
 }
 
-.titulo {
-  margin-top: 5rem;
-  text-align: center;
-  font-size: 3rem;
-  color: rgb(219, 198, 60);
-}
+.main {
+	max-width: 400px;
+	margin-inline: auto;
+	background-color: rgba(0, 0, 0, 0.8);
+	border-radius: 10px;
 
-form {
-  margin: 0 auto;
-  background-color: rgba(0, 0, 0, 0.619);
-  width: 50vw;
-  height: 60vh;
-  /* display: grid;
-  gap: 1rem;
-  grid-auto-rows: 2.2rem;
-  grid-template-columns: repeat(auto-fill, minmax(1.5rem, 1fr)); */
-  padding: 2rem;
-  color: white;
-  margin-top: 2rem;
-  border-radius: 2rem;
-  padding-bottom: 40px;
-}
-
-.avatar {
-  display: grid;
-  text-align: center;
-}
-
-#casa {
-  margin-left: 7rem;
-  font-weight: bold;
-  height: 3vh;
-  width: 30vw;
-  background-color: rgb(219, 198, 60);
-  border: 0.2rem solid black;
-  border-radius: 5px;
-}
-
-#casa:hover {
-  background-color: rgb(111, 100, 28);
-  border: 0.2rem solid white;
-  color: white;
-}
-
-.registro {
-  height: 30px;
-  margin-top: 1em;
+	.__heading {
+		margin-top: 5rem;
+		text-align: center;
+	}
 }
