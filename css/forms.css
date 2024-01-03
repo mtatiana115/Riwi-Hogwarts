@@ -1,12 +1,22 @@
 .main {
 	.__form {
-		padding: 20px;
+		.--wrapper {
+			@media (width > 768px) {
+				display: flex;
+				align-items: center;
+				gap: 1.6rem;
+			}
+		}
 
 		.__field {
 			display: flex;
 			flex-direction: column;
 			gap: 8px;
 			margin-bottom: 16px;
+
+			@media (width > 768px) {
+				width: 50%;
+			}
 
 			.__input {
 				height: 40px;

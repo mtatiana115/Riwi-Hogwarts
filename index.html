@@ -12,110 +12,135 @@
 	</head>
 	<body>
 		<main class="main">
-			<div class="__heading">
-				<h1 class="text-heading--1">HOGWARTS</h1>
+			<div class="__pages" id="mainPage">
+				<div class="__heading">
+					<h2 class="text-heading--1">HOGWARTS</h2>
+				</div>
+				<form id="hogwartsForm" class="__form" action="" method="post">
+					<div class="--wrapper">
+						<div class="__field --avatar">
+							<label class="__label text-body--1" for="avatar"
+								>Upload an image:</label
+							>
+							<input
+								class="__input text-body--1"
+								type="file"
+								id="avatar"
+								name="avatar"
+								accept="image/*"
+								required
+							/>
+						</div>
+						<div class="__field">
+							<label class="__label text-body--1" for="name">Name:</label>
+							<input
+								class="__input text-body--1"
+								type="text"
+								id="name"
+								name="name"
+								required
+							/>
+						</div>
+					</div>
+
+					<div class="--wrapper">
+						<div class="__field">
+							<label class="__label text-body--1" for="age">Age:</label>
+							<input
+								class="__input text-body--1"
+								type="number"
+								id="age"
+								name="age"
+								required
+							/>
+						</div>
+						<div class="__field">
+							<label class="__label text-body--1" for="family">Family:</label>
+							<input
+								class="__input text-body--1"
+								id="family"
+								name="family"
+								type="text"
+								required
+							/>
+						</div>
+					</div>
+
+					<div class="--wrapper">
+						<div class="__field">
+							<label class="__label text-body--1" for="lineage">
+								Lineage:</label
+							>
+							<input
+								class="__input text-body--1"
+								id="lineage"
+								name="lineage"
+								type="text"
+								required
+							/>
+						</div>
+						<div class="__field">
+							<label class="__label text-body--1" for="qualities"
+								>Qualities:
+							</label>
+							<select
+								class="__input --select text-body--1"
+								id="qualities"
+								name="qualities"
+								required
+							>
+								<option
+									class="__option text-body--1"
+									value="Courage, Strength, Boldness"
+								>
+									Courage, Strength, Boldness
+								</option>
+								<option
+									class="__option text-body--1"
+									value="Justice, Loyalty, Patience"
+								>
+									Justice, Loyalty, Patience
+								</option>
+								<option
+									class="__option text-body--1"
+									value="Creativity, Erudition, Intelligence"
+								>
+									Creativity, Erudition, Intelligence
+								</option>
+								<option
+									class="__option text-body--1"
+									value="Ambition, Determination, Cunning"
+								>
+									Ambition, Determination, Cunning
+								</option>
+							</select>
+						</div>
+					</div>
+
+					<button class="__button">
+						<span class="text-body--1"> Visit to the sorting hat 🧙‍♀️ </span>
+					</button>
+				</form>
+			</div>
+			<div class="__pages __results-page" id="resultsPage">
+				<div class="__heading">
+					<h2 class="text-heading--1">Student Information</h2>
+				</div>
+				<article class="__results-content" id="resultsContent"></article>
+				<div class="__buttons">
+					<button class="__button" id="darkArtsClass" type="button">
+						<span class="text-body--1">
+							Defense against the dark arts class
+						</span>
+					</button>
+					<button class="__button" id="transfigurationClass" type="button">
+						<span class="text-body--1"> Transfiguration class </span>
+					</button>
+				</div>
 			</div>
 
-			<form id="hogwartsForm" class="__form" action="" method="post">
-				<div class="__field --avatar">
-					<label class="__label text-body--1" for="avatar"
-						>Upload an image:</label
-					>
-					<input
-						class="__input text-body--1"
-						type="file"
-						id="avatar"
-						name="avatar"
-						accept="image/*"
-						required
-					/>
-				</div>
-				<div class="__questions">
-					<div class="__field">
-						<label class="__label text-body--1" for="name">Name:</label>
-						<input
-							class="__input text-body--1"
-							type="text"
-							id="name"
-							name="name"
-							required
-						/>
-					</div>
-					<div class="__field">
-						<label class="__label text-body--1" for="age">Age:</label>
-						<input
-							class="__input text-body--1"
-							type="number"
-							id="age"
-							name="age"
-							required
-						/>
-					</div>
-					<div class="__field">
-						<label class="__label text-body--1" for="family">Family:</label>
-						<input
-							class="__input text-body--1"
-							id="family"
-							name="family"
-							type="text"
-							required
-						/>
-					</div>
-
-					<div class="__field">
-						<label class="__label text-body--1" for="lineage"> Lineage:</label>
-						<input
-							class="__input text-body--1"
-							id="lineage"
-							name="lineage"
-							type="text"
-							required
-						/>
-					</div>
-					<div class="__field">
-						<label class="__label text-body--1" for="qualities"
-							>Qualities:
-						</label>
-						<select
-							class="__input --select text-body--1"
-							id="qualities"
-							name="qualities"
-							required
-						>
-							<option
-								class="__option text-body--1"
-								value="Courage, Strength, Boldness"
-							>
-								Courage, Strength, Boldness
-							</option>
-							<option
-								class="__option text-body--1"
-								value="Justice, Loyalty, Patience"
-							>
-								Justice, Loyalty, Patience
-							</option>
-							<option
-								class="__option text-body--1"
-								value="Creativity, Erudition, Intelligence"
-							>
-								Creativity, Erudition, Intelligence
-							</option>
-							<option
-								class="__option text-body--1"
-								value="Ambition, Determination, Cunning"
-							>
-								Ambition, Determination, Cunning
-							</option>
-						</select>
-					</div>
-				</div>
-
-				<button class="__button">
-					<span class="text-body--1"> Visit to the sorting hat 🧙‍♀️ </span>
-				</button>
-			</form>
-
-			<article class="__form-response" id="formResponse"></article>
+			<article class="__modal-window" id="modalWindow"></article>
+			<div class="__layer" id="layer"></div>
 		</main>
 	</body>
 </html>

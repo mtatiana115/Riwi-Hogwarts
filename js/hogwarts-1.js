@@ -1,27 +1,38 @@
 // const prueba = document.getElementById("prueba");
 // console.log("🚀  prueba=>", prueba);
 
+let hogwartsForm = document.querySelector("#hogwartsForm");
 let hogwartsInitialFormData = {};
-let formResponse = document.querySelector("#formResponse");
+let modalWindow = document.querySelector("#modalWindow");
+let mainPage = document.querySelector("#mainPage");
+let resultsPage = document.querySelector("#resultsPage");
+let resultsContent = document.querySelector("#resultsContent");
+let darkArtsClass = document.querySelector("#darkArtsClass");
+let transfigurationClass = document.querySelector("#transfigurationClass");
+let layer = document.querySelector("#layer");
 
-document.querySelector("#hogwartsForm").addEventListener("submit", (e) => {
+function navigator() {
+	if (location.hash.startsWith("#results")) {
+		mainPage.classList.remove("--visible");
+		resultsPage.classList.add("--visible");
+	} else {
+		resultsPage.classList.remove("--visible");
+		mainPage.classList.add("--visible");
+	}
+	document.body.scrollTop = 0;
+	document.documentElement.scrollTop = 0;
+}
+
+window.addEventListener("DOMContentLoaded", navigator, false);
+window.addEventListener("hashchange", navigator, false);
+
+hogwartsForm.addEventListener("submit", (e) => {
 	e.preventDefault();
 	const data = Object.fromEntries(new FormData(e.target));
 	hogwartsInitialFormData = data;
 	asignarCasa(hogwartsInitialFormData);
-
-	showMessage(hogwartsInitialFormData);
+	goToResults(hogwartsInitialFormData);
 });
-
-let clases = {
-	transformaciones: "Profesor Kevin Slughorn",
-	herbologia: "Profesor Maria Umbridge",
-	pociones: "Profesor Liliana McGonagall",
-	encantamientos: "Profesora Jackie",
-	defensaContraLasArtesOscuras: "Profesor Robinson Snape ",
-	animalesMagicos: "Profesor David Filch",
-	historiaDeMagia: "Profesor Ronald Sprout",
-};
 
 function asignarCasa(student) {
 	// Determinar la casa según las cualidades y el linaje
@@ -40,89 +51,79 @@ function asignarCasa(student) {
 	}
 }
 
-function showMessage(studentForm) {
-	formResponse.classList.add("--visible");
-	formResponse.innerHTML = `
-	<div>
-		<p class="text-body--1">Avatar: ${studentForm.avatar}</p>
-		<p class="text-body--1">Name: ${studentForm.name}</p>
-		<p class="text-body--1">Age: ${studentForm.age}</p>
-		<p class="text-body--1">Family: ${studentForm.family}</p>
-		<p class="text-body--1">Lineage: ${studentForm.lineage}</p>
-		<p class="text-body--1">Qualities: ${studentForm.qualities}</p>
-		<p class="text-body--1">House: ${studentForm.house}</p>
+function goToResults(studentFormResults) {
+	location.hash = "#results";
+	hogwartsForm = {};
+	resultsContent.innerHTML = `
+	<div class="__main-container">
+		<div class="__image">
+			<p class="text-body--1">Avatar: ${studentFormResults.avatar}</p>
+		</div>
+		<div class="__texts" id="texts"> 
+			<p class="text-body--1">Name: ${studentFormResults.name}</p>
+			<p class="text-body--1">Age: ${studentFormResults.age}</p>
+			<p class="text-body--1">Family: ${studentFormResults.family}</p>
+			<p class="text-body--1">Lineage: ${studentFormResults.lineage}</p>
+			<p class="text-body--1">Qualities: ${studentFormResults.qualities}</p>
+			<p class="text-body--1">House: ${studentFormResults.house}</p>
+			<p class="text-body--1 __patronus" id="patronus"></p>
+		</div>
 	</div>`;
+	darkArtsClass.addEventListener("click", generateAnimalPatronus, false);
+	transfigurationClass.addEventListener(
+		"click",
+		goToTransfigurationClass,
+		false
+	);
+}
+function generateAnimalPatronus() {
+	const animalPatronus = [
+		"Ciervo",
+		"Aguila",
+		"Dragon",
+		"Fenix",
+		"Tlacuache",
+		"Libelula",
+	];
+	let index = Math.floor(Math.random() * animalPatronus.length);
+	let patronus = document.querySelector("#patronus");
+	patronus.classList.add("--appear");
+	patronus.innerText = `Your patronus is: ${animalPatronus[index]}`;
+}
+
+function goToTransfigurationClass() {
+	const boggartAppering = `
+		<p class="__text text-heading--2" id="modalMessage">"A Boggart appeared in the transfiguration class!"</p>
+		<button class="__button" id="fightBoggart" type="button">
+			<span class="text-body--1"> Fight Boggart </span>
+		</button>
+		`;
+	showModal(boggartAppering);
+
+	let fightBoggart = document.querySelector("#fightBoggart");
+	fightBoggart.addEventListener("click", defeatBoggart, false);
+}
+
+function defeatBoggart() {
+	let modalMessage = document.querySelector("#modalMessage");
+	modalMessage.innerText =
+		"Riddikulus! The Boggart transforms and becomes funny.";
 	setTimeout(() => {
-		formResponse.classList.remove("--visible");
+		removeModal();
 	}, 3000);
 }
 
-let cena = {
-	cenaS: function () {
-		estudianteHogwarts.casa = this.asignarCasa();
-	},
-};
+function showModal(template) {
+	modalWindow.classList.add("--visible");
+	modalWindow.innerHTML = template;
+	layer.classList.add("--visible");
+	layer.addEventListener("click", removeModal, false);
+}
 
-// cena.asignarCasa();
-// console.log("casa", estudianteHogwarts.casa);
-// console.log(
-// 	`${estudianteHogwarts.nombre} ha sido seleccionado para la casa de ${estudianteHogwarts.casa}.`
-// );
-
-// let claseTransformaciones = {
-// 	profesor: clases.transformaciones,
-// 	hora: "9 AM",
-// 	boggartTransformado: null,
-
-// 	realizarTransformacionRiddikulus: function () {
-// 		if (this.boggartTransformado === null) {
-// 			console.log("¡un Boggart aparecion en la clase de transformaciones¡¡ ");
-// 		} else {
-// 			console.log(
-// 				"!Riddikulus¡ El boggart se transforma y da risa. Es ahora un ${this.boggartTransformado.formaTransformada}"
-// 			);
-// 		}
-// 	},
-// 	enfrentarBoggart: function (boggart) {
-// 		console.log("!Un boggart ha aprecido en la clase de Transformaciones¡");
-// 		console.log(` Forma original del boggart: ${boggart.formaOriginal}`);
-// 		this.boggartTransformado = {
-// 			formaOriginal: boggart.formaOriginal,
-// 			formaTransformada: "Payaso gracioso",
-// 		};
-
-// 		this.realizarTransformacionRiddikulus;
-// 	},
-// };
-
-// let boggartEjemplo = {
-// 	formaOriginal: "Puerco araña",
-// };
-
-// // claseTransformaciones.enfrentarBoggart(boggartEjemplo);
-
-// let defensaContraLasArtesOscuras = {
-// 	profesor: clases.defensaContraLasArtesOscuras,
-// 	hora: "10 AM",
-// 	animalPatronus: [
-// 		"Ciervo",
-// 		"Aguila",
-// 		"Dragon",
-// 		"Fenix",
-// 		"Tlacuache",
-// 		"Libelula",
-// 	],
-// 	generarAnimalPatronus: function () {
-// 		let indiceAleatorio = Math.floor(
-// 			Math.random() * this.animalPatronus.length
-// 		);
-// 		return this.animalPatronus[indiceAleatorio];
-// 	},
-// };
-
-// // // Llamada a la función sin argumentos
-// // estudianteHogwarts.animalPatronus = defensaContraLasArtesOscuras.generarAnimalPatronus();
-// // console.log("animal", estudianteHogwarts.animalPatronus);
+function removeModal() {
+	modalWindow.classList.remove("--visible");
+	layer.classList.remove("--visible");
+}
 
 // let clasePociones = {
 // 	profesor: clases.pociones,
