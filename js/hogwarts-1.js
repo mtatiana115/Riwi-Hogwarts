@@ -1,20 +1,23 @@
-// const prueba = document.getElementById("prueba");
-// console.log("🚀  prueba=>", prueba);
-
 let hogwartsForm = document.querySelector("#hogwartsForm");
-let hogwartsInitialFormData = {};
 let modalWindow = document.querySelector("#modalWindow");
 let mainPage = document.querySelector("#mainPage");
 let resultsPage = document.querySelector("#resultsPage");
 let resultsContent = document.querySelector("#resultsContent");
 let darkArtsClass = document.querySelector("#darkArtsClass");
 let transfigurationClass = document.querySelector("#transfigurationClass");
+let tryAgainButton = document.querySelector("#tryAgain");
 let layer = document.querySelector("#layer");
 
 function navigator() {
 	if (location.hash.startsWith("#results")) {
-		mainPage.classList.remove("--visible");
-		resultsPage.classList.add("--visible");
+		const hasForm = localStorage.getItem("hogwartsForm") ? true : false;
+		if (hasForm) {
+			mainPage.classList.remove("--visible");
+			resultsPage.classList.add("--visible");
+			goToResults();
+		} else {
+			location.hash = "";
+		}
 	} else {
 		resultsPage.classList.remove("--visible");
 		mainPage.classList.add("--visible");
@@ -29,9 +32,7 @@ window.addEventListener("hashchange", navigator, false);
 hogwartsForm.addEventListener("submit", (e) => {
 	e.preventDefault();
 	const data = Object.fromEntries(new FormData(e.target));
-	hogwartsInitialFormData = data;
-	asignarCasa(hogwartsInitialFormData);
-	goToResults(hogwartsInitialFormData);
+	asignarCasa(data);
 });
 
 function asignarCasa(student) {
@@ -49,15 +50,38 @@ function asignarCasa(student) {
 			"No se puede determinar la casa. ¡El Sombrero Seleccionador está confundido!"
 		);
 	}
+	const inputImage = document.querySelector("#avatar");
+	const file = inputImage.files[0];
+
+	if (file) {
+		const lector = new FileReader();
+		lector.onload = function (e) {
+			const dataURL = e.target.result;
+			const finalStudentForm = {
+				...student,
+				avatar: {
+					name: file.name,
+					size: file.size,
+					type: file.type,
+					dataURL: dataURL,
+				},
+			};
+			localStorage.setItem("hogwartsForm", JSON.stringify(finalStudentForm));
+			location.hash = "#results";
+			goToResults();
+		};
+		lector.readAsDataURL(file);
+	}
 }
 
-function goToResults(studentFormResults) {
+function goToResults() {
+	const studentForm = localStorage.getItem("hogwartsForm");
+	const studentFormResults = JSON.parse(studentForm);
 	location.hash = "#results";
-	hogwartsForm = {};
 	resultsContent.innerHTML = `
 	<div class="__main-container">
 		<div class="__image">
-			<p class="text-body--1">Avatar: ${studentFormResults.avatar}</p>
+			<img class="__preview" id="imagePreview">
 		</div>
 		<div class="__texts" id="texts"> 
 			<p class="text-body--1">Name: ${studentFormResults.name}</p>
@@ -75,7 +99,22 @@ function goToResults(studentFormResults) {
 		goToTransfigurationClass,
 		false
 	);
+	tryAgainButton.addEventListener("click", tryAgain, false);
+	showImage();
 }
+
+function showImage() {
+	const imagePreview = document.querySelector("#imagePreview");
+	const studentForm = localStorage.getItem("hogwartsForm");
+	const studentFormResults = JSON.parse(studentForm);
+
+	const avatar = studentFormResults.avatar;
+
+	if (avatar && avatar.dataURL) {
+		imagePreview.src = avatar.dataURL;
+	}
+}
+
 function generateAnimalPatronus() {
 	const animalPatronus = [
 		"Ciervo",
@@ -110,7 +149,7 @@ function defeatBoggart() {
 		"Riddikulus! The Boggart transforms and becomes funny.";
 	setTimeout(() => {
 		removeModal();
-	}, 3000);
+	}, 2000);
 }
 
 function showModal(template) {
@@ -125,41 +164,7 @@ function removeModal() {
 	layer.classList.remove("--visible");
 }
 
-// let clasePociones = {
-// 	profesor: clases.pociones,
-// 	horario: " 10 AM",
-// 	ingredientes: {
-// 		crisopos: 2,
-// 		talloDescurainiaSophia: 1,
-// 	},
-// 	tiempoPreparacion: 5,
-// 	pocionPreparada: false,
-// 	prepararPocion: function () {
-// 		if (
-// 			this.ingredientes.crisopos === 2 &&
-// 			this.ingredientes.talloDescurainiaSophia === 1 &&
-// 			this.tiempoPreparacion === 5
-// 		) {
-// 			console.log("!Pocion Felix Felicis Preparada con exito¡");
-// 			this.pocionPreparada = true;
-// 		} else {
-// 			console.log("No se pudo preparar la Pocion Felix Felicis");
-// 			this.pocionPreparada = false;
-// 		}
-// 	},
-
-// 	aplicarConsecuencias: function () {
-// 		if (this.pocionPreparada) {
-// 			console.log("La pocion ha tenido efecto");
-// 			console.log("cambiar profesro de pociones por el de animales magicos. ");
-// 			this.profesor = clases.animalesMagicos;
-// 			clases.pociones = this.profesor;
-// 			console.log(`profesor: ${this.profesor}`);
-// 		} else {
-// 			console.log("No se pueden aplicar consecuencias. ");
-// 		}
-// 	},
-// };
-
-// clasePociones.prepararPocion();
-// clasePociones.aplicarConsecuencias();
+function tryAgain() {
+	localStorage.removeItem("hogwartsForm");
+	location.hash = "";
+}
