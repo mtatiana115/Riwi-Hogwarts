@@ -32,10 +32,10 @@ window.addEventListener("hashchange", navigator, false);
 hogwartsForm.addEventListener("submit", (e) => {
 	e.preventDefault();
 	const data = Object.fromEntries(new FormData(e.target));
-	asignarCasa(data);
+	assignHouse(data);
 });
 
-function asignarCasa(student) {
+function assignHouse(student) {
 	// Determinar la casa según las cualidades y el linaje
 	if (student.qualities === "Courage, Strength, Boldness") {
 		student.house = "Gryffindor";
@@ -117,12 +117,12 @@ function showImage() {
 
 function generateAnimalPatronus() {
 	const animalPatronus = [
-		"Ciervo",
-		"Aguila",
+		"Deer",
+		"Eagle",
 		"Dragon",
-		"Fenix",
-		"Tlacuache",
-		"Libelula",
+		"Phoenix",
+		"Opossum",
+		"Dragonfly",
 	];
 	let index = Math.floor(Math.random() * animalPatronus.length);
 	let patronus = document.querySelector("#patronus");
